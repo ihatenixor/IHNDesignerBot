@@ -1,7 +1,9 @@
 from aiogram import Bot, Dispatcher, executor, types
 import logging
 from aiogram.dispatcher.filters import Text
- 
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, sessionmaker
+
 API_TOKEN = '6115890388:AAGdbk7ff3Aut2Y83qZ3-g-kk4IcPlUBPQQ'
 
 logging.basicConfig(level=logging.INFO)
@@ -74,7 +76,7 @@ async def send_tshirts(message: types.Message):
    await message.answer("Каталог худи:\n№1. Худи Стизус\n№2. Худи Капибара", reply_markup=keyboard)
 
 @dp.message_handler(Text(equals="Шопперы")) 
-async def send_tshirts(message: types.Message):
+async def send_tshirts(message: types.Message):  
    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
    buttons = ["№1", "№2", "Назад"]
    keyboard.add(*buttons)
